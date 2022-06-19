@@ -1,33 +1,18 @@
--- FONTE: https://www.w3schools.com/sql/sql_ref_mysql.asp
--- FONTE: https://dev.mysql.com/doc/
+ -- WHERE -> representa uma forma de condicão para realização de um certo comando 
 
+-- aqui estou procurando por um produto em específico
+SELECT * FROM tb_produto WHERE PRODUTO = '544931';
+ 
+ -- aqui estou procurando por quem esteja em Rio de Janeiro na minha tabela
+SELECT * FROM tbcliente WHERE CIDADE = 'Rio de Janeiro';
 
--- AQUI TENHO O DIA DE HOJE
-SELECT CURDATE();
--- AQUI EU TENHO O HORÁRIO DE AGORA
-SELECT CURRENT_TIME();
--- MOMENTO ATUAL EM DIA, HORA, MIN E SEG
-SELECT CURRENT_TIMESTAMP();
--- O HORÁRIO MOSTRADO USA COMO REFERÊNCIA O HORÁRIO DO SERVIDOR
--- ANO ATUAL
-SELECT YEAR(CURRENT_TIMESTAMP());
--- DIA DE HOJE
-SELECT DAY(CURRENT_TIMESTAMP());
--- MÊS
-SELECT MONTH(CURRENT_TIMESTAMP());
--- NOME DO MÊS
-SELECT MONTHNAME(CURRENT_TIMESTAMP());
--- DIFERENÇA DAS DATAS EM DIAS
-SELECT DATEDIFF(CURRENT_TIMESTAMP(), '2019-01-01') AS RESULTADO; 
--- QUANTOS DIAS EU VIVI
-SELECT DATEDIFF(CURRENT_TIMESTAMP(), '2002-09-24') AS DIAS_VIVIDOS; 
--- TESTE DE SUB
-SELECT CURRENT_TIMESTAMP() AS DIA_HOJE,
-DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 5 DAY) AS RESULTADO;
--- TESTE USANDO TABELAS
-SELECT DISTINCT DATA_VENDA, 
-DAYNAME(DATA_VENDA) AS DIA, MONTHNAME(DATA_VENDA) AS MES, YEAR(DATA_VENDA) AS ANO
-FROM notas_fiscais; 
--- //////////////////
-SELECT NOME, TIMESTAMPDIFF (YEAR, DATA_DE_NASCIMENTO, CURDATE()) AS IDADE
-FROM  tabela_de_clientes;
+-- aqui estou procurando por produtos com sabor limão
+SELECT * FROM tb_produto WHERE SABOR = 'Limão';
+
+-- aqui estou mudando o nome do sabor dos produtos -> de limão para cítricos
+UPDATE tb_produto SET SABOR = 'Cítricos' WHERE SABOR = 'Limão';
+
+-- aqui estou procurando por produtos com sabor Cítricos
+SELECT * FROM tb_produto WHERE SABOR = 'Cítricos';
+
+-- HÁ A POSSIBILIDADE DE FAZER FILTROS COMPOSTOS TAMBÉM

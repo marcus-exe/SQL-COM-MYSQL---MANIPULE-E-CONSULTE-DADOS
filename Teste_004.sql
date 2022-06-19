@@ -1,10 +1,49 @@
-USE sucos_vendas;
+USE sucos;
 
--- DISTINCT -> é uma função do SQL que irá mostrar somente coisas distintas
+INSERT INTO tb_produto (
+PRODUTO,
+NOME,
+EMBALAGEM,
+TAMANHO, 
+SABOR, 
+PRECO_LISTA) 
+VALUES (
+'1037797',
+ 'Clean - 2 Litros - Laranja',
+ 'PET',
+ '2 Litros',
+ 'Laranja',
+ 16.008);
+ 
+ INSERT INTO tb_produto (
+PRODUTO,
+NOME,
+EMBALAGEM,
+TAMANHO, 
+SABOR, 
+PRECO_LISTA) 
+VALUES (
+'1000889',
+ 'Sabor da Montanha - 700 ml - Uva',
+ 'Garrafa',
+ '700 ml',
+ 'Uva',
+  6.31);
+  
+   INSERT INTO tb_produto (
+PRODUTO,
+NOME,
+EMBALAGEM,
+TAMANHO, 
+SABOR, 
+PRECO_LISTA) 
+VALUES (
+'1004327',
+ 'ideira do Campo - 1,5 Litros - Melancia',
+ 'PET',
+ '1,5 Litros',
+ 'Melancia',
+  19.51);
+  
 
-SELECT EMBALAGEM, TAMANHO FROM tabela_de_produtos;
-SELECT DISTINCT EMBALAGEM, TAMANHO FROM tabela_de_produtos;
-SELECT DISTINCT * FROM tabela_de_produtos WHERE SABOR = 'Laranja'; 
-
-SELECT * FROM tabela_de_clientes;
-SELECT DISTINCT BAIRRO FROM tabela_de_clientes WHERE CIDADE = 'Rio de Janeiro';
+ SELECT * FROM tb_produto;

@@ -1,53 +1,34 @@
-USE sucos_vendas; 
--- UNION -> FAZ A UNIÃO DE DUAS OU MAIS TABELAS
--- É importante que as tabelas que serão unidas tenham o mesmo número e tipo de campo
--- Ele faz automaticamente o DISTINCT
--- UNION ALL -> Não aplica DISTINCT
+USE sucos;
 
-SELECT DISTINCT BAIRRO FROM tabela_de_clientes;
-SELECT DISTINCT BAIRRO FROM tabela_de_vendedores;
+DROP TABLE tabela_de_vendedores;
 
--- ////////////////
-SELECT DISTINCT BAIRRO FROM tabela_de_clientes
-UNION
-SELECT DISTINCT BAIRRO FROM tabela_de_vendedores;
+CREATE TABLE tabela_de_vendedores
+( MATRICULA varchar(5),
+NOME varchar(100),
+PERCENTUAL_COMISSAO float,
+DATA_ADMISSAO date,
+DE_FERIAS bit);
 
--- /////////////////
-SELECT DISTINCT BAIRRO FROM tabela_de_clientes
-UNION ALL
-SELECT DISTINCT BAIRRO FROM tabela_de_vendedores;
+ALTER TABLE tabela_de_vendedores ADD PRIMARY KEY (MATRICULA);
 
--- //////////////// Vamos colocar um alias 
-SELECT DISTINCT BAIRRO, NOME, 'Cliente' as TIPO FROM tabela_de_clientes
-UNION
-SELECT DISTINCT BAIRRO, NOME, 'Vendedor' as TIPO FROM tabela_de_vendedores; 
+INSERT INTO tabela_de_vendedores
+(MATRICULA, NOME, DATA_ADMISSAO, PERCENTUAL_COMISSAO, DE_FERIAS)
+VALUES
+('00235','Márcio Almeida Silva','2014-08-15',0.08,0);
 
--- ////////////////Ele só vai escrever as colunas do primeiro select
-SELECT DISTINCT BAIRRO, NOME, 'Cliente' as TIPO_CLIENTE FROM tabela_de_clientes
-UNION
-SELECT DISTINCT BAIRRO, NOME, 'Vendedor' as TIPO_VENDEDOR FROM tabela_de_vendedores; 
+INSERT INTO tabela_de_vendedores
+(MATRICULA, NOME, DATA_ADMISSAO, PERCENTUAL_COMISSAO, DE_FERIAS)
+VALUES
+('00236','Cláudia Morais','2013-09-17',0.08,1);
 
+INSERT INTO tabela_de_vendedores
+(MATRICULA, NOME, DATA_ADMISSAO, PERCENTUAL_COMISSAO, DE_FERIAS)
+VALUES
+('00237','Roberta Martins','2017-03-18',0.11,1);
 
-SELECT DISTINCT BAIRRO, NOME, 'Cliente' as TIPO_CLIENTE, CPF FROM tabela_de_clientes
-UNION
-SELECT DISTINCT BAIRRO, NOME, 'Vendedor' as TIPO_VENDEDOR, MATRICULA FROM tabela_de_vendedores; 
+INSERT INTO TABELA_DE_VENDEDORES
+(MATRICULA, NOME, DATA_ADMISSAO, PERCENTUAL_COMISSAO, DE_FERIAS)
+VALUES
+('00238','Pericles Alves','2016-08-21',0.11,0);
 
-
--- /////////////////////// JUNTANDO RIGHT AND LEFT JOIN PELO UNION
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-RIGHT JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO
-UNION
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-LEFT JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+SELECT * FROM tabela_de_vendedores;

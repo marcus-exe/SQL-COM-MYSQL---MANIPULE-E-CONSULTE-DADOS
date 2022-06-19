@@ -1,16 +1,22 @@
-USE sucos_vendas;
+USE sucos;
 
--- USO DO LIMIT
--- USADO SEMPRE NO FIM DOS ARGUMENTOS
--- LIMIT 4 -> 4 PRIMEIRAS LINHAS
--- LIMIT 2,3 -> A PARTIR DA SEGUNDA LINHA, PEGUE 3 LINHAS
 
-SELECT * FROM tabela_de_produtos;
+INSERT INTO tabela_de_vendedores (
+MATRICULA,
+NOME,
+PERCENTUAL_COMISSAO)
+VALUES (
+'00235',
+'Márcio Almeida Silva',
+0.08);
 
--- COMANDOS EQUIVALENTES
-SELECT * FROM tabela_de_produtos limit 4;
-SELECT * FROM tabela_de_produtos limit 0,4;
+INSERT INTO tabela_de_vendedores (
+MATRICULA,
+NOME,
+PERCENTUAL_COMISSAO)
+VALUES (
+'00236',
+'Cláudia Morais',
+0.08);
 
-SELECT * FROM tabela_de_produtos limit 2,5;
-
-SELECT * FROM notas_fiscais WHERE DATA_VENDA = '2017-01-01' limit 10;
+SELECT * FROM tabela_de_vendedores;

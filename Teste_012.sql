@@ -1,74 +1,26 @@
-USE sucos_vendas;
--- eu so uso a notação tabela.coluna quando há uma repetição dessa coluna nas tabelas
+USE sucos;
 
--- por esse banco de dados temos acesso tanto ao bairro dos clientes quanto dos vendedores
-SELECT * FROM tabela_de_vendedores;
-SELECT * FROM tabela_de_clientes;
+ALTER TABLE tbcliente ADD PRIMARY KEY (CPF);
 
--- ///////////////////////
-SELECT * FROM tabela_de_vendedores INNER JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+ALTER TABLE tbcliente ADD COLUMN (DATA_NASCIMENTO DATE);
 
--- /////////////////////
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-INNER JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+INSERT INTO tbcliente (
+CPF,
+NOME, 
+ENDERECO1, 
+ENDERECO2, 
+BAIRRO, 
+CIDADE, 
+ESTADO, 
+CEP, 
+IDADE, 
+SEXO, 
+LIMITE_CREDITO, 
+VOLUME_COMPRA, 
+PRIMEIRA_COMPRA, 
+DATA_NASCIMENTO)
+VALUES ('00388934505', 'João da Silva','Rua Projetada A, número 10',
+'', 'Vila Romana', 'Caratinga', 'Amazonas', '2222222', 30, 'M',
+10000.00, 2000, 0, '1989-10-05');
 
--- //////////////////////////
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-LEFT JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
--- AQUI É POSSÍVEL VER O ESCRITÓRIO QUE NÃO TEM NENHUM CLIENTE
-
-
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-LEFT JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
--- AQUI É POSSÍVEL VER O ESCRITÓRIO QUE NÃO TEM NENHUM CLIENTE - NO BAIRRO
-
-
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-RIGHT JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
--- AQUI É POSSÍVEL VER QUAL CLIENTE NÃO TEM NENHUM VENDEDOR - NO BAIRRO
-
-
--- //////////////// 
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores
-FULL JOIN tabela_de_clientes
-ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
--- INFELIZMENTE O MYSQL NÃO SUPORTA FULL JOIN -> MAS EU POSSO JUNTAR UM RIGHT E LEFT JOIN PARA SIMULAR ISSO
-
--- //////////////
-SELECT tabela_de_vendedores.BAIRRO,
-tabela_de_vendedores.NOME,
-tabela_de_vendedores.DE_FERIAS,
-tabela_de_clientes.BAIRRO,
-tabela_de_clientes.NOME
-FROM tabela_de_vendedores, tabela_de_clientes;
--- O CROSS JOIN É UMA ANÁLISE COMBINATÓRIA
+SELECT * FROM tbcliente;

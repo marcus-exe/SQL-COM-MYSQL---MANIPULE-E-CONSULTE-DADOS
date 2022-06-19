@@ -1,58 +1,13 @@
-USE sucos_vendas;
+USE sucos;
 
-/*Hoje iremos aprender o método GROUP BY com alguns parâmetros como SUM, MAX, MIN, AVG, COUNT*/
-/*Quando eu uso um método como SUM, MAX ..., DEVO USAR UM ALIAS*/
-/* GROUP BY CAMPO_QUE_IRÁ_AGRUPAR_INFORMAÇÃO */
+INSERT INTO tb_produto (
+PRODUTO,  NOME, EMBALAGEM, TAMANHO, SABOR,
+PRECO_LISTA) VALUES
+('544931', 'Frescor do Verão - 350 ml - Limão', 'PET', '350 ml','Limão',3.20);
 
+INSERT INTO tb_produto (
+PRODUTO,  NOME, EMBALAGEM, TAMANHO, SABOR,
+PRECO_LISTA) VALUES
+('1078680', 'Frescor do Verão - 470 ml - Manga', 'Lata', '470 ml','Manga',5.18);
 
-SELECT * FROM tabela_de_clientes;
-
--- Verificar essas duas variváveis
-SELECT ESTADO, LIMITE_DE_CREDITO FROM tabela_de_clientes;
-
--- ASSIM VOCÊ CONSEGUE SOMAR OS LIMITES DE CRÉDITO DE SÃO PAULO E RIO DE JANEIRO
-SELECT ESTADO, SUM(LIMITE_DE_CREDITO) AS LIMITE_TOTAL FROM tabela_de_clientes GROUP BY ESTADO;
-
--- Verificar essas duas variáveis
-SELECT EMBALAGEM, PRECO_DE_LISTA FROM tabela_de_produtos;
-
--- Verificar a embalagem mais cara
-SELECT EMBALAGEM, MAX(PRECO_DE_LISTA) AS EMBALAGEM_MAIS_CARA FROM tabela_de_produtos GROUP BY EMBALAGEM;
-
--- Verificar a embalagem mais cara em ordem decrescente
-SELECT EMBALAGEM, MAX(PRECO_DE_LISTA) AS EMBALAGEM_MAIS_CARA FROM tabela_de_produtos GROUP BY EMBALAGEM 
-ORDER BY EMBALAGEM_MAIS_CARA DESC;
- 
- -- Verificar o número de embalagens ->  Eu coloco * no contador, pois quero que ele conte todas as instâncias
-SELECT EMBALAGEM, COUNT(*) AS CONTADOR FROM tabela_de_produtos GROUP BY EMBALAGEM ORDER BY CONTADOR DESC;
-
-
--- Vamos fazer alguns testes com critérios de filtro	
--- AQUI TEMOS PARA TODAS AS CIDADES
-SELECT BAIRRO, SUM(LIMITE_DE_CREDITO) AS LIMITE FROM tabela_de_clientes	GROUP BY BAIRRO;
-
--- AQUI FAZEMOS SOMENTE PARA A CIDADE DE RIO DE JANAIRO
-SELECT BAIRRO, SUM(LIMITE_DE_CREDITO) AS LIMITE FROM tabela_de_clientes WHERE CIDADE = 'Rio de Janeiro'	GROUP BY BAIRRO;
-
--- CONSEGUIMOS FAZER GRUPAMENTO COM MAIS DE UM GRUPO, MAS A RESTRIÇÃO CONTINUARÁ
- SELECT ESTADO, BAIRRO, SUM(LIMITE_DE_CREDITO) AS LIMITE FROM tabela_de_clientes WHERE CIDADE = 'Rio de Janeiro'
- GROUP BY ESTADO, BAIRRO;
- 
- -- AGRUPAMENTO ORDENADO
-SELECT ESTADO, BAIRRO, SUM(LIMITE_DE_CREDITO) AS LIMITE FROM tabela_de_clientes WHERE CIDADE = 'Rio de Janeiro' 
-GROUP BY ESTADO, BAIRRO 
-ORDER BY BAIRRO;
-
-
---
-SELECT * FROM tabela_de_produtos;
-SELECT * FROM tabela_de_produtos WHERE CODIGO_DO_PRODUTO = '1101035';
-SELECT * FROM itens_notas_fiscais; 
-
--- AQUI UM CONTADOR PARA ACHAR A QUANTIDADE DE UM PRODUTO ESPECÍFICO
-SELECT CODIGO_DO_PRODUTO, MAX(`QUANTIDADE`) as 'MAIOR QUANTIDADE' FROM itens_notas_fiscais WHERE `CODIGO_DO_PRODUTO` = '1101035'
-GROUP BY CODIGO_DO_PRODUTO;
-
-SELECT CODIGO_DO_PRODUTO, COUNT(*) AS CONTADOR FROM itens_notas_fiscais WHERE CODIGO_DO_PRODUTO = '1101035' AND QUANTIDADE = 99
-GROUP BY CODIGO_DO_PRODUTO;
-
+SELECT * FROM tb_produto;
